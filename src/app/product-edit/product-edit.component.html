@@ -1,0 +1,25 @@
+<h2 class="ui centered header">Edidion de registro de producto</h2>
+<div class="ui container" *ngIf="producto">
+  <div class="ui grid">
+    <div class="seven wide column">
+      <img [src]="producto.imageUrl" class="ui fluid image">
+    </div>
+    <div class="nine wide column">
+      <form class="ui form" novalidate>
+        <div class="field">
+          <label>Nombre</label>
+          <input type="text" value="{{producto.name}}" #name>
+        </div>
+        <div class="field">
+          <label>Descripcion</label>
+          <input type="text" value="{{producto.description}}" #description>
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <input type="number" value="{{producto.price}}" #price>
+        </div>
+        <button type="submit" class="ui button" (click)="actualizar(name,description,price)">Actualizar</button>
+      </form>
+    </div>
+  </div>
+</div>

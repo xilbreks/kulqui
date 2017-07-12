@@ -1,0 +1,33 @@
+
+<div class="ui comments segment" *ngIf="user">
+  <h3 class="ui dividing header">Conversasion</h3>
+  <div class="comment" *ngFor="let message of userMessages">
+    <a class="avatar" *ngIf="message.me">
+      <img src="../../assets/icons/matt.jpg">
+    </a>
+    <a class="avatar" *ngIf="!message.me">
+      <img src="../../assets/icons/jenny.jpg">
+    </a>
+    <div class="content">
+      <a class="author" *ngIf="message.me">{{user.firstname}} {{user.lastname}}</a>
+      <a class="author" *ngIf="!message.me">K-achina</a>
+      <div class="metadata">
+        <span class="date">{{message.date | date:'medium'}}</span>
+      </div>
+      <div class="text">
+        <p>{{message.text}}</p>
+      </div>
+      <div class="actions">
+        <a class="reply"></a>
+      </div>
+    </div>
+  </div>
+  <form class="ui reply form">
+    <div class="field">
+      <input type="text" name="texto" value="" autocomplete="off" #texto>
+    </div>
+    <button class="ui blue labeled submit icon button" (click)="enviar(texto)">
+      <i class="icon edit"></i> Decir
+    </button>
+  </form>
+</div>

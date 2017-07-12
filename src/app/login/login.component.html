@@ -1,0 +1,59 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="five wide column">
+    </div>
+    <div class="six wide column" *ngIf="!(authService.auth.authState | async)?.uid">
+      <form class="ui raised segment form" *ngIf="!nuevo">
+        <h2 class="ui centered dividing header">Inicia Sesion</h2>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Email" #email>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password" #password>
+        </div>
+        <button class="ui teal button" [class.loading]="signInLoading" type="submit" (click)="login(email,password)">Entrar</button>
+        <button class="ui right floated button" *ngIf="!signInLoading" (click)="showsignup()">Registrate</button>
+      </form>
+      <form class="ui raised segment form" *ngIf="nuevo">
+        <h2 class="ui centered dividing header">Crear cuenta</h2>
+        <div class="field">
+          <label>Nombres</label>
+          <input type="text" name="firstname" placeholder="Nombre" #firstname>
+        </div>
+        <div class="field">
+          <label>Apellidos</label>
+          <input type="text" name="lastname" placeholder="Apellidos" #lastname>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Email" #email>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Password" #password>
+        </div>
+        <div class="field">
+          <label>Confirma Password</label>
+          <input type="password" name="password" placeholder="Password" #cpassword>
+        </div>
+        <button class="ui blue button" [class.loading]="signUpLoading" type="submit" (click)="signup(firstname,lastname,email,password,cpassword)">Registrarme</button>
+        <button class="ui right floated button" *ngIf="!signUpLoading" (click)="hidesignup()">Volver</button>
+      </form>
+      <div class="ui error message" *ngIf="error">
+        <div class="header">{{error.name}}</div>
+        <p>{{error.description}}</p>
+      </div>
+    </div>
+    <div class="six wide column" *ngIf="(authService.auth.authState | async)?.uid">
+      <div class="ui raised segment">
+        <h2 class="ui centered dividing header">Logeado Como</h2>
+        <b>{{ (authService.auth.authState | async)?.email }}</b><br>
+        <button class="ui button" type="submit" (click)="logout()">Salir</button>
+      </div>
+    </div>
+    <div class="five wide column">
+    </div>
+  </div>
+</div>

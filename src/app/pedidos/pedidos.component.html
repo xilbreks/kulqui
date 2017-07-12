@@ -1,0 +1,28 @@
+<h3 class="ui centered header">Registro de todas las compras realizadas por los clientes</h3>
+<table class="ui celled structured table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Direccion</th>
+      <th>Voucher</th>
+      <th>Productos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let venta of ventas; let i=index">
+      <td>{{i+1}}</td>
+      <td *ngIf="venta.user">{{venta.user.lastname}}<br>{{venta.user.firstname}}</td>
+      <td *ngIf="!venta.user">Cliente</td>
+      <td>{{venta.direccion}}</td>
+      <td>{{venta.voucher}}</td>
+      <td>
+        <table class="ui table">
+          <tr *ngFor="let prod of venta.prods;let j=index">
+            <td>{{j+1}}:{{prod.name}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

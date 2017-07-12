@@ -1,0 +1,55 @@
+<div class="ui grid">
+  <div class="four wide column">
+
+  </div>
+  <div class="eight wide column">
+    <h2 class="ui centered header">Registro de productos</h2>
+  </div>
+  <div class="four wide column">
+    <div class="ui icon input">
+      <input type="text" #listFilter (keyup)="0" value="" placeholder="buscar"/>
+      <i class="search icon"></i>
+    </div>
+  </div>
+</div>
+<div class="ui grid">
+  <div class="ui eight wide column items">
+    <div class="item" *ngFor="let producto of productos | productFilter:listFilter.value ; let odd=odd; let even=even">
+      <div class="ui tiny image" *ngIf="even">
+        <img [src]="producto.imageUrl">
+      </div>
+      <div class="content" *ngIf="even">
+        <a class="header" [routerLink]="[producto.id]">{{producto.name}}</a>
+        <div class="meta">
+          <span>{{producto.description}}</span>
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+        <div class="extra">
+          S/ {{producto.price}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui eight wide column items">
+    <div class="item" *ngFor="let producto of productos | productFilter:listFilter.value ; let odd=odd; let even=even">
+      <div class="ui tiny image" *ngIf="odd">
+        <img [src]="producto.imageUrl">
+      </div>
+      <div class="content" *ngIf="odd">
+        <a class="header" [routerLink]="[producto.id]">{{producto.name}}</a>
+        <div class="meta">
+          <span>{{producto.description}}</span>
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+        <div class="extra">
+          S/ {{producto.price}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

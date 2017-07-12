@@ -1,0 +1,32 @@
+<p>
+  chat works! 
+</p>
+
+<div class="ui grid">
+  <div class="five wide column">
+    <div class="ui feed">
+      <div class="event" *ngFor="let user of users">
+        <div class="label">
+          <img src="../../assets/icons/matt.jpg">
+        </div>
+        <div class="content">
+          <div class="summary">
+            <a [routerLink]="['chatt/'+user.$key]">{{user.lastname}} {{user.firstname}}</a>
+            <div class="date">
+              {{user.messageDate | date:'medium'}}
+            </div>
+            <div class="ui teal left pointing label" *ngIf="!user.read">1</div>
+          </div>
+          <div class="extra text">
+            {{user.lastmessage}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nine wide column">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+    

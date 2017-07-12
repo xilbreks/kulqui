@@ -1,0 +1,60 @@
+<h2 class="ui centered header">Datos de la Compra</h2>
+<div class="ui container" *ngIf="items.length>0">
+  <div class="ui grid">
+    <div class="eleven wide column">
+      <div class="ui segment">
+        <table class="ui celled table">
+          <thead>
+            <tr><th>Producto</th>
+            <th>P. uni</th>
+            <th>Cantidad</th>
+            <th>Sub total</th>
+          </tr></thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>{{item.producto.name}}</td>
+              <td>{{item.precio}}</td>
+              <td>{{item.cantidad}}</td>
+              <td>S/ {{item.cantidad*item.precio | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr><th colspan="4">
+              <b>Total S/ {{total | number : '1.2-2'}}</b>
+            </th>
+          </tr></tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="five wide column">
+      <form class="ui form">
+        <div class="field">
+          <label>Pagar en Banco de la nacion al la cuenta: <br>abcd efgh ijkl mnop</label>
+        </div>
+        <div class="field">
+          <label>Numero de Voucher:</label>
+          <input type="text" placeholder="Numero de Voucher" #voucher>
+        </div>
+        <div class="field">
+          <label>Direccion de entrega:</label>
+          <input type="text" placeholder="Direccion" #direccion>
+        </div>
+        <button class="ui bottom attached primary button" type="submit" tabindex="0" (click)="pagar(voucher,direccion)" *ngIf="!success">
+          <i class="payment large icon"></i> Confirmar compra
+        </button>
+      </form>
+      <div class="ui error message" *ngIf="errorVoucher">
+        <div class="header">No valido</div>
+        <p>El numero de voucher no es valido</p>
+      </div>
+      <div class="ui error message" *ngIf="errorDireccion">
+        <div class="header">Falta direccion</div>
+        <p>No pusiste una dirrecion de entrega</p>
+      </div>
+      <div class="ui success message" *ngIf="success">
+        <div class="header">Compra completada</div>
+        <p>Su producto llegara a la direccion de entrega en 1 o dos dias<br>GRACIAS POR SU PREFERENCIA!</p>
+      </div>
+    </div>
+  </div>  
+</div>

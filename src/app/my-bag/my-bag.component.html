@@ -1,0 +1,85 @@
+<h2 class="ui centered header">Mi Bolsa</h2>
+<div class="ui container" *ngIf="items.length>0">
+  <div class="ui grid">
+    <div class="eleven wide column">
+      <div class="ui raised segment">
+        <div class="ui divided items">
+          <div class="item" *ngFor="let item of items">
+            <div class="ui tiny image">
+              <img [src]="item.producto.imageUrl">
+            </div>
+            <div class="middle aligned content">
+              <div class="header">
+                {{item.producto.name}}
+              </div>
+              <div class="description">
+                <p>S/ {{item.precio}}</p>
+              </div>
+              <div class="extra">
+                <div class="ui large label">Cantidad: {{item.cantidad}}</div>
+                <div class="ui right floated ui buttons">
+                  <button class="ui button" title="SubTotal">S/ {{item.cantidad*item.precio}}</button>
+                  <div class="or"></div>
+                  <button class="ui orange button" title="Eliminar" (click)="eliminarProducto(item)">
+                    <i class="remove icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="five wide column">
+      <div class="ui segment">
+        <table class="ui very basic collapsing celled table">
+          <thead>
+            <tr><th>Producto</th>
+            <th>SubTotal</th>
+          </tr></thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>
+                <h4 class="ui header">
+                  <div class="content">
+                    {{item.producto.name}}
+                    <div class="sub header">{{item.cantidad}} x S/ {{item.precio}}
+                    </div>
+                  </div>
+                </h4>
+              </td>
+              <td>
+                S/ {{item.cantidad*item.precio | number : '1.2-2'}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4 class="ui header">
+                  <div class="content">
+                    TOTAL
+                  </div>
+                </h4>
+              </td>
+              <td>
+                S/ {{total | number : '1.2-2'}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="ui bottom attached primary button" tabindex="0" (click)="pagar()">
+        <i class="payment large icon"></i> Pagar
+      </button>
+      <div class="ui error message" *ngIf="errorMsg">
+        <div class="header">No estas logeado</div>
+        <p>Por favor inicia sesion para continuar</p>
+      </div>
+    </div>
+  </div>  
+</div>
+<div *ngIf="items.length==0">
+  <p class="ui centered header">
+    No tienes ningun producto en tu bolsa<br>
+    Selecciona al menos un producto para que aparesca aqui.
+  </p>
+</div>

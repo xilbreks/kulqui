@@ -1,0 +1,62 @@
+<div class="ui grid" *ngIf="producto">
+    <div class="row">
+      <div class="one wide column">
+      </div>
+      <div class="seven wide column">
+        <div class="ui raised segment">
+          <img class="ui centered medium rounded image" [src]="producto.imageUrl">
+        </div>
+      </div>
+      <div class="seven wide column">
+        <h2>{{producto.name}}</h2>
+        <i class="large yellow star icon"></i>
+        <i class="large yellow star icon"></i>
+        <i class="large yellow star icon"></i>
+        <i class="large yellow star icon"></i>
+        <i class="large grey star icon"></i>
+        <h3>S/ {{producto.price}}</h3>
+
+        <div class="ui bulleted list">
+          <div class="item">Envio gratis para todo Puno</div>
+          <div class="item">Disponible</div>
+        </div>
+
+        <div class="ui success message" *ngIf="agregado">
+          <div class="header">Agregado a mi bolsa</div>
+          <p>Ud ha agragado este producto a mi bolsa.</p>
+        </div>
+
+        <form class="ui form">
+          <div class="fields">
+            <div class="field">
+              <label>Cantidad</label>
+              <input type="number" value="1" #cantidad>
+            </div>
+            <div class="field">
+              <label>.</label>
+              <button class="ui green button" type="submit" (click)="agregar(cantidad)" >
+                <i class="add to cart icon"></i>
+                Quiero esto
+              </button>
+            </div>
+          </div>            
+        </form>
+
+        <h4 class="ui horizontal divider header">
+          <i class="book icon"></i>
+          Descripcion
+        </h4>
+        <p>{{producto.description}}</p>
+        <h4 class="ui horizontal divider header">
+          <i class="tags icon"></i>
+          Tags
+        </h4>
+        <button class="ui button" *ngFor="let tag of producto.tag">
+          <i class="tag icon"></i>{{tag}}
+        </button>
+
+      </div>
+      <div class="one wide column">
+      </div>
+    </div>
+  </div>
