@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.error = null;
   }
 
-  login(email,password){
+  login(email,password): boolean{
     this.signInLoading = true;
     this.authService.login(email.value,password.value)
     .then((user)=>{
@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
           }; 
       }
     });
+    return false;
   }
 
   logout(){

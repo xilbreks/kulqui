@@ -3,14 +3,14 @@
   <h3 class="ui dividing header">Conversasion</h3>
   <div class="comment" *ngFor="let message of userMessages">
     <a class="avatar" *ngIf="message.me">
-      <img src="../../assets/icons/matt.jpg">
+      <img src="/assets/icons/matt.jpg">
     </a>
     <a class="avatar" *ngIf="!message.me">
-      <img src="../../assets/icons/jenny.jpg">
+      <img src="/assets/icons/jenny.jpg">
     </a>
     <div class="content">
       <a class="author" *ngIf="message.me">{{user.firstname}} {{user.lastname}}</a>
-      <a class="author" *ngIf="!message.me">K-achina</a>
+      <a class="author" *ngIf="!message.me">Kulqui</a>
       <div class="metadata">
         <span class="date">{{message.date | date:'medium'}}</span>
       </div>
